@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from "./template/header";
+import Footer from "./template/footer";
+import Nav from "./template/navigation";
+import Body from "./template/body";
+import { connect } from "react-redux"
+import Gejala from "./page/gejala";
+import FormGejala from "./page/formg";
+import Home from './page/home';
+import Login from './page/login';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+     }
+  }
+
+  render() { 
+    return ( 
+      <>
+      <Router>
+        <Body></Body>
+      </Router>
+      </>
+     );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  checkLogin: state.AReducer.isLogin
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+  }
+}
+ 
+export default connect(mapStateToProps, mapDispatchToProps) (App);
