@@ -21,16 +21,13 @@ class Kota extends Component {
         this.props.clearKota(idx)
         this.props.history.push("/kota")
         this.setState({})
-        // let dataBaru= this.props.indicat.splice(index, 1)
-        // dataBaru= dataBaru.splice(index, 1)
-        // console.log("data baru", dataBaru);
         alert(`Data berhasil terhapus`)
 
     }
     editClick=(index)=>{
         this.props.cariKota(index)
         console.log("index edit", index);
-        this.props.history.push("/formkota")
+        this.props.history.push("/editkota/"+index)
 
     }
     render() { 

@@ -11,7 +11,7 @@ let defaultState = {
     },
         
     ],
-    gejala: {}
+    kotaedit: {}
 }
 
 const kotaReducer = (state = defaultState, action) => {
@@ -30,6 +30,7 @@ const kotaReducer = (state = defaultState, action) => {
             }
             console.log(kota)
             return {
+                ...state,
                 city: kota
             }
             
@@ -44,14 +45,17 @@ const kotaReducer = (state = defaultState, action) => {
                 console.log("data hapus2:", datahapus);
 
                 return{
+                    ...state,
                     city:datahapus
                 }
 
             case "UPDATE_KOTA":
                 let newcity = state.city
-                    newcity[action.payload.id].provinsi = action.payload.provinsi;
-                    newcity[action.payload.id].kota = action.payload.kota;
+                    newcity[action.payload.index].provinsi = action.payload.provinsi;
+                    newcity[action.payload.index].kota = action.payload.kota;
+                    console.log("newcity", newcity);
                 return{
+                    ...state,
                     city:newcity
                     
                 }
@@ -61,7 +65,8 @@ const kotaReducer = (state = defaultState, action) => {
                 let data = state.city[index]
                 console.log(data);
                 return{
-                    city: data
+                    ...state,
+                    kotaedit: data
                 }
                 console.log("data", state.city);
                 

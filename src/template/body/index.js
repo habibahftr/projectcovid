@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Router, Switch, useHistory } from 'react-router-dom';
+import { Route, Router, Switch, useHistory, useParams } from 'react-router-dom';
 import Login from "../../page/login";
 import Regis from "../../page/regis";
 import Error from "../../page/error";
@@ -69,6 +69,13 @@ class Body extends Component {
                         return <Gejala history={history}  />
                     }
                 }/>
+                <Route path="/editgejala/:indx" component={
+                    ()=>{
+                        let history = useHistory();
+                        const {indx} = useParams();
+                        return <FormGejala indx={indx} history={history}  />
+                    }
+                }/>
                 <Route path="/provinsi" component={
                     ()=>{
                         let history = useHistory()
@@ -79,6 +86,13 @@ class Body extends Component {
                     ()=>{
                         let history = useHistory()
                         return <FormProv history={history} />
+                    }
+                }/>
+                <Route path="/editprovinsi/:indx" component={
+                    ()=>{
+                        let history = useHistory();
+                        const {indx} = useParams();
+                        return <FormProv indx={indx} history={history}  />
                     }
                 }/>
                 <Route path="/kota" component={
@@ -93,6 +107,13 @@ class Body extends Component {
                         return <Formkota history={history} />
                     }
                 }/>
+                <Route path="/editkota/:indx" component={
+                    ()=>{
+                        let history = useHistory();
+                        const {indx} = useParams();
+                        return <Formkota indx={indx} history={history}  />
+                    }
+                }/>
                  <Route path="/kecamatan" component={
                     ()=>{
                         let history = useHistory()
@@ -103,6 +124,13 @@ class Body extends Component {
                     ()=>{
                         let history = useHistory()
                         return <FormKec history={history} />
+                    }
+                }/>
+                <Route path="/editkecamatan/:indx" component={
+                    ()=>{
+                        let history = useHistory();
+                        const {indx} = useParams();
+                        return <FormKec indx={indx} history={history}  />
                     }
                 }/>
                 <Route path="/kelurahan" component={
@@ -117,6 +145,13 @@ class Body extends Component {
                         return <FormKel history={history} />
                     }
                 }/>
+                <Route path="/editkelurahan/:indx" component={
+                    ()=>{
+                        let history = useHistory();
+                        const {indx} = useParams();
+                        return <FormKel indx={indx} history={history}  />
+                    }
+                }/>
                 <Route path="/kasus" component={
                     ()=>{
                         let history = useHistory()
@@ -129,6 +164,13 @@ class Body extends Component {
                         return <FormKasus history={history} />
                     }
                 }/>
+                <Route path="/editkasus/:indx" component={
+                    ()=>{
+                        let history = useHistory();
+                        const {indx} = useParams();
+                        return <FormKasus indx={indx} history={history}  />
+                    }
+                }/>
                 <Route path="/pengobatan" component={
                     ()=>{
                         let history = useHistory()
@@ -139,6 +181,13 @@ class Body extends Component {
                     ()=>{
                         let history = useHistory()
                         return <FormObat history={history} />
+                    }
+                }/>
+                <Route path="/editpengobatan/:indx" component={
+                    ()=>{
+                        let history = useHistory();
+                        const {indx} = useParams();
+                        return <FormObat indx={indx} history={history}  />
                     }
                 }/>
                 <Route path="/detail" component={

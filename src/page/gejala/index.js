@@ -10,9 +10,6 @@ class Gejala extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            edit: false,
-            index:"",
-            gejalaedit:{},
 
         }
     }
@@ -33,15 +30,15 @@ class Gejala extends Component {
     }
     editClick=(index)=>{
         this.props.cariGejala({index})
-        console.log("index edit", index);
-        this.props.history.push("/editgejala")
+        // console.log("index edit", index);
+        this.props.history.push("/editgejala/"+index)
 
     }
 
 
     render() {
         if (!this.props.login)
-            return this.props.history.push("/")
+            this.props.history.push("/")
  
         console.log("gejala", this.props.indicat);
         console.log("provinsi", this.props.provinsi);
@@ -96,8 +93,6 @@ class Gejala extends Component {
 
 const mapStateToProps = state => ({
     indicat: state.gejalaReducer.indications,
-    hay : state.gejalaReducer.hallo,
-    provinsi : state.PReducer.provinsi,
     login: state.AReducer.isLogin,
 
     

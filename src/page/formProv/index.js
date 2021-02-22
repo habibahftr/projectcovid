@@ -23,39 +23,46 @@ class FormProv extends Component {
     }
 
     saveprov=(data)=>{
-        let obj =this.state
-        // if(this.state.edit===false){
+        if (this.props.indx) {
+            let objedit = {
+                index:this.props.indx,
+                provinsi:this.state.provinsi,
+            }
+            this.props.editProv(objedit)
+            data.preventDefault()
+            this.clear()
+            alert(`Update success`)
+            this.props.history.push("/provinsi")    
+        }else{
+            let obj = this.state
             this.props.submitProv(obj);
             data.preventDefault()
             this.clear()
             alert(`Sumbit success`)
             this.props.history.push("/provinsi")
-        // }else{
-        //     this.props.editgejala(obj)
-        //     this.setState({
-        //        edit: false 
-        //     })
-        //     data.preventDefault()
-        //     this.clear()
-        //     alert("Update Success!")
-        //     // this.props.history.push("/gejala")
-        // }
+        }
     }
 
+    componentDidMount(){ //akan dijalankan ketika pindah komponen,dan hanya dijalankan sekali
+        if (this.props.indx) {
+            let dataEdit = this.props.cariProv({index : this.props.indx})
+            console.log("provedit", this.props.provEdit);
+            this.setState({
+                provinsi : this.props.provEdit.provinsi,
+            })
+        }
+    }
     
     clear = () => {
         this.setState({ 
             provinsi:"",
         })
     }
-    // reset = ()=> {
-    //     this.setState({
-    //         gejalaedit :{}
-    //     })
-    //   }
+    
     render() { 
         if (!this.props.login)
-            return this.props.history.push("/")
+            this.props.history.push("/")
+
         const{provinsi} = this.state
         return ( 
             <div>
@@ -89,9 +96,8 @@ class FormProv extends Component {
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
     prov: state.PReducer.provinsi,
-    login: state.AReducer.isLogin,
-
-    
+    provEdit: state.PReducer.provedit,
+    login: state.AReducer.isLogin, 
   })
   
 const mapDispatchToProps = dispatch => {
@@ -99,8 +105,7 @@ const mapDispatchToProps = dispatch => {
         submitProv: (data)=> dispatch({type:"PROVINSI_PAGE", payload: data}),
         clearProv: (id)=> dispatch({type:"CLEAR_PROVINSI", payload: id}),
         cariProv: (id)=> dispatch({type:"CARI_PROVINSI", payload: id}),
-        selectlist: (data)=>dispatch({type:"SELECT_PROVINSI", payload: data}),
-        
+        editProv: (data) => dispatch({ type: "UPDATE_PROVINSI", payload: data }),  
     }
   }
 

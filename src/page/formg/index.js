@@ -13,9 +13,9 @@ class FormGejala extends Component {
         this.state = {
             indication: "",
             description: "",
-            // edit: false,
-            // index:"",
-            // gejalaedit:{},
+            edit: false,
+            index:"",
+            gejalaedit:{},
         }
     }
 
@@ -26,24 +26,38 @@ class FormGejala extends Component {
     }
 
     save = (data) => {
-        let obj = this.state
-        this.props.gejala(obj);
-        data.preventDefault()
-        this.clear()
-        alert(`Sumbit success`)
-        this.props.history.push("/gejala")
-
-        // this.props.editgejala(obj)
-        // this.setState({
-        //    edit: false 
-        // })
-        // data.preventDefault()
-        // this.clear()
-        // alert("Update Success!")
-        // this.props.history.push("/gejala")
+        if (this.props.indx) {
+            let objedit = {
+                index:this.props.indx,
+                indication:this.state.indication,
+                description:this.state.description,
+            }
+            this.props.editgejala(objedit)
+            data.preventDefault()
+            this.clear()
+            alert(`Update success`)
+            this.props.history.push("/gejala")    
+        }else{
+            let obj = this.state
+            this.props.gejala(obj);
+            data.preventDefault()
+            this.clear()
+            alert(`Sumbit success`)
+            this.props.history.push("/gejala")
+        }
 
     }
 
+    componentDidMount(){ //akan dijalankan ketika pindah komponen,dan hanya dijalankan sekali
+        if (this.props.indx) {
+            let dataEdit = this.props.cariGejala({index : this.props.indx})
+            console.log(this.props.gejalaEdit);
+            this.setState({
+                indication : this.props.gejalaEdit.indication,
+                description : this.props.gejalaEdit.description
+            })
+        }
+    }
 
     clear = () => {
         this.setState({
@@ -59,8 +73,8 @@ class FormGejala extends Component {
 
     render() {
         if (!this.props.login)
-            return this.props.history.push("/")
- 
+            this.props.history.push("/")
+       
         console.log("gejala", this.props.dataUser);
         const { indication, description } = this.state
 
@@ -96,8 +110,8 @@ class FormGejala extends Component {
 
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
-    indicat: state.InReducer.indications,
-    gejalaEdit: state.InReducer.gejala,
+    indicat: state.gejalaReducer.indications,
+    gejalaEdit: state.gejalaReducer.gejala,
     login: state.AReducer.isLogin,
     
 
@@ -106,7 +120,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         gejala: (data) => dispatch({ type: "INDICATION_PAGE", payload: data }),
-        editgejala: (data) => dispatch({ type: "UPDATE_GEJALA", payloas: data }),
+        editgejala: (data) => dispatch({ type: "UPDATE_GEJALA", payload: data }),
         cariGejala: (id) => dispatch({ type: "CARI_GEJALA", payload: id })
 
     }

@@ -13,7 +13,7 @@ let defaultState = {
     },
         
     ],
-    gejala: {}
+    kecedit: {}
 }
 
 const kecamatanReducer = (state = defaultState, action) => {
@@ -52,9 +52,10 @@ const kecamatanReducer = (state = defaultState, action) => {
 
             case "UPDATE_KECAMATAN":
                 let newkec = state.kecamatan
-                    newkec[action.payload.id].provinsi = action.payload.provinsi;
-                    newkec[action.payload.id].kota = action.payload.kota;
-                    newkec[action.payload.id].kecamatan = action.payload.kecamatan
+                    newkec[action.payload.index].provinsi = action.payload.provinsi;
+                    newkec[action.payload.index].kota = action.payload.kota;
+                    newkec[action.payload.index].kecamatan = action.payload.kecamatan
+                    console.log("newkec", newkec);
                 return{
                     kecamatan:newkec
                     

@@ -21,21 +21,18 @@ class Provinsi extends Component {
         this.props.clearProv(idx)
         this.props.history.push("/provinsi")
         this.setState({})
-        // let dataBaru= this.props.indicat.splice(index, 1)
-        // dataBaru= dataBaru.splice(index, 1)
-        // console.log("data baru", dataBaru);
         alert(`Data berhasil terhapus`)
 
     }
     editClick=(index)=>{
-        this.props.cariGejala(index)
+        this.props.cariProv(index)
         console.log("index edit", index);
-        this.props.history.push("/formprov")
+        this.props.history.push("/editprovinsi/"+index)
 
     }
     render() {
         if (!this.props.login)
-            return this.props.history.push("/") 
+            this.props.history.push("/") 
         console.log(this.props.prov);
         return ( 
             <>
@@ -84,7 +81,6 @@ class Provinsi extends Component {
 }
  
 const mapStateToProps = state => ({
-    // dataUser: state.UReducer.users,
     prov: state.PReducer.provinsi,
     login: state.AReducer.isLogin,
 

@@ -15,6 +15,7 @@ class FormKec extends Component {
             provinsi:"",
             kota:"",
             kecamatan:"",
+            kecedit:{},
             edit: false
          }
     }
@@ -24,27 +25,46 @@ class FormKec extends Component {
         })
     }
 
-    saveKota=(data)=>{
-        let obj =this.state
-        // if(this.state.edit===false){
-            this.props.submitKec(obj);
-            data.preventDefault()
-            this.clear()
-            alert(`Sumbit success`)
-            this.props.history.push("/kecamatan")
-        // }else{
-            // this.props.editgejala(obj)
-        //     this.setState({
-        //        edit: false 
-        //     })
-        //     data.preventDefault()
-        //     this.clear()
-        //     alert("Update Success!")
-        //     this.props.history.push("/kota")
-        // }
+    saveKec=(data)=>{
+            if (this.props.indx) {
+                let objedit = {
+                    index:this.props.indx,
+                    provinsi:this.state.provinsi,
+                    kota:this.state.kota,
+                    kecamatan : this.state.kecamatan,
+                }
+                this.props.editKec(objedit)
+                data.preventDefault()
+                this.clear()
+                alert(`Update success`)
+                this.props.history.push("/kecamatan")    
+            }else{
+                let obj =this.state
+                // if(this.state.edit===false){
+                    this.props.submitKec(obj);
+                    data.preventDefault()
+                    this.clear()
+                    alert(`Sumbit success`)
+                    this.props.history.push("/kecamatan")
+            }
     }
 
-    
+    componentDidMount(){ //akan dijalankan ketika pindah komponen,dan hanya dijalankan sekali
+        if (this.props.indx) {
+            let dataEdit = this.props.cariKec({index : this.props.indx})
+            console.log(this.props.dataEdit);
+            this.setState({
+                indication : this.props.dataEdit.indication,
+                description : this.props.dataEdit.description
+            })
+        }
+    }
+    reset = () => {
+        this.setState({
+            kecedit: {}
+        })
+    }
+
     clear = () => {
         this.setState({ 
             provinsi:"",
@@ -52,14 +72,10 @@ class FormKec extends Component {
             kecamatan:""
         })
     }
-    // reset = ()=> {
-    //     this.setState({
-    //         gejalaedit :{}
-    //     })
-    //   }
+    
     render() { 
         if (!this.props.login)
-            return this.props.history.push("/")
+            this.props.history.push("/")
         const{provinsi, kota, kecamatan} = this.state
         console.log("ini form kec");
         return (  
@@ -101,7 +117,7 @@ class FormKec extends Component {
                     <Label>Kecamatan </Label> <Input type="text" name="kecamatan" value={kecamatan} onChange={this.setValue}  /><br/>     
                     <Link to="/">
                         <div>
-                        <button type="submit" value="submit" onClick={this.saveKota} >Submit</button>
+                        <button type="submit" value="submit" onClick={this.saveKec} >Submit</button>
                         </div>
                     </Link>
                 </div>
@@ -121,6 +137,7 @@ const mapStateToProps = state => ({
     city: state.KReducer.city,
     prov :state.PReducer.provinsi,
     login: state.AReducer.isLogin,
+    dataedit : state.KecReducer.kecedit
 
     
   })
@@ -129,8 +146,8 @@ const mapDispatchToProps = dispatch => {
     return {
         submitKec: (data)=> dispatch({type:"KECAMATAN_PAGE", payload: data}),
         clearKec: (id)=> dispatch({type:"CLEAR_KECAMATAN", payload: id}),
-        cariKec: (id)=> dispatch({type:"CARI_KECAMATAN", payload: id})
-        
+        cariKec: (id)=> dispatch({type:"CARI_KECAMATAN", payload: id}),
+        editKec: (data)=> dispatch({type:"UPDATE_KECAMATAN", payload: data}),
     }
   }
 

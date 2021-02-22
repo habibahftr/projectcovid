@@ -14,7 +14,6 @@ let defaultState = {
         },
     ],
     gejala: {},
-    hallo: "bibah"
 }
 
 const gejalaReducer = (state = defaultState, action) => {
@@ -33,6 +32,7 @@ const gejalaReducer = (state = defaultState, action) => {
             }
             console.log(gejala)
             return {
+                ...state,
                 indications: gejala
             }
 
@@ -47,14 +47,17 @@ const gejalaReducer = (state = defaultState, action) => {
             console.log("data hapus2:", datahapus);
 
             return {
+                ...state,
                 indications: datahapus
             }
 
         case "UPDATE_GEJALA":
             let newgejala = state.indications
-            newgejala[action.payload.id].indication = action.payload.indication;
-            newgejala[action.payload.id].description = action.payload.description;
+            newgejala[action.payload.index].indication = action.payload.indication;
+            newgejala[action.payload.index].description = action.payload.description;
+            console.log("newgejala", newgejala);
             return {
+                ...state,
                 indications: newgejala
 
             }
@@ -62,11 +65,13 @@ const gejalaReducer = (state = defaultState, action) => {
         case "CARI_GEJALA":
             let index = action.payload.index
             let data = state.indications[index]
-            console.log(data);
+            console.log(action.payload.index);
+            console.log("data", action.payload);
             return {
+                ...state,
                 gejala: data
             }
-            console.log("data", state.gejala);
+            
 
         default:
             return state

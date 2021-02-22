@@ -24,7 +24,6 @@ class App extends Component {
       <>
       <Router>
         <Body></Body>
-        {/* <Logout></Logout> */}
       </Router>
       
       </>
