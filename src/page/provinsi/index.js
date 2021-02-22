@@ -33,7 +33,9 @@ class Provinsi extends Component {
         this.props.history.push("/formprov")
 
     }
-    render() { 
+    render() {
+        if (!this.props.login)
+            return this.props.history.push("/") 
         console.log(this.props.prov);
         return ( 
             <>
@@ -84,6 +86,7 @@ class Provinsi extends Component {
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
     prov: state.PReducer.provinsi,
+    login: state.AReducer.isLogin,
 
     
   })

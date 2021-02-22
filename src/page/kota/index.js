@@ -34,6 +34,8 @@ class Kota extends Component {
 
     }
     render() { 
+        if (!this.props.login)
+            return this.props.history.push("/")
         console.log("kota", this.props.indicat);
         return ( 
             <>
@@ -85,7 +87,8 @@ class Kota extends Component {
 }
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
-    city: state.KReducer.city
+    city: state.KReducer.city,
+    login: state.AReducer.isLogin,
 
     
   })

@@ -58,6 +58,8 @@ class FormKota extends Component {
     //     })
     //   }
     render() { 
+        if (!this.props.login)
+            return this.props.history.push("/")
         const{provinsi, kota} = this.state
         console.log("prov", this.props.prov);
         return ( 
@@ -106,7 +108,8 @@ class FormKota extends Component {
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
     city: state.KReducer.city,
-    prov :state.PReducer.provinsi
+    prov :state.PReducer.provinsi,
+    login: state.AReducer.isLogin,
 
     
   })

@@ -75,7 +75,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    // dataUser: state.UReducer.users,
     checkLogin: state.AReducer.isLogin,
     
   })

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link, Router } from 'react-router-dom';
 import "./style.css";
 
@@ -13,6 +14,9 @@ class Error extends Component {
         return <Link to="/" />
     }
     render() { 
+        if (!this.props.login)
+            return this.props.history.push("/")
+ 
         console.log("error");
         return ( 
             <div className="error">
@@ -54,4 +58,12 @@ class Error extends Component {
     }
 }
  
-export default Error;
+const mapStateToProps = state => ({
+    login: state.AReducer.isLogin,
+})
+
+const mapDispatchToProps = dispatch => {
+    return {
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps) (Error);

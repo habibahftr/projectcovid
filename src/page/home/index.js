@@ -7,6 +7,7 @@ import Footer from "../../template/footer";
 import Body from "../../template/body";
 import Nav from "../../template/navigation";
 import { BrowserRouter as Router } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 
@@ -17,25 +18,11 @@ class Home extends Component {
             
         }
     }
-    isPage=()=>{
-        // if (this.props.currentPage === "gejala") {
-        //     return <Gejala></Gejala>
-        // } else {
-        //     return <FormGejala></FormGejala>
-            
-        // }
-        switch (this.props.currentPage) {
-            case "gejala":
-                return <Gejala ></Gejala>
-            case "formgejala":
-                return <FormGejala/>
-        
-            default:
-                break;
-        }
-    }
+
     render() {
-        console.log("ini home");
+        if (!this.props.login)
+            return this.props.history.push("/")
+ 
         return (
             <>
                     <div >
@@ -50,7 +37,7 @@ class Home extends Component {
                             </div>
                             <div className="content">
                                 <div className="col-12 col-m-12">
-                                        {this.isPage()}
+                                        {/* {this.isPage()} */}
                                 </div>
                             </div>
                         </div>
@@ -66,4 +53,14 @@ class Home extends Component {
     }
 }
 
-export default Home;
+
+const mapStateToProps = state => ({
+    login: state.AReducer.isLogin,
+})
+
+const mapDispatchToProps = dispatch => {
+    return {
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

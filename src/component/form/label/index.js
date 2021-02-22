@@ -8,7 +8,7 @@ class Label extends Component {
     render() { 
         return ( 
             <>
-                <label>{this.props.children}</label>
+                <label style={{marginRight: "10px", width:"100px",display:"inline-block"}}>{this.props.children}</label>
             </>
          );
     }

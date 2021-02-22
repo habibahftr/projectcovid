@@ -9,20 +9,15 @@ import kelurahanReducer from "./kelurahan";
 import kasusReducer from "./kasus";
 import pengobatanReducer from "./pengobatan";
 
-let store = createStore(combineReducers({
+let reducer = combineReducers({
     AReducer: AuthReducer,
-    // UReducer: UserReducer,
-    InReducer: gejalaReducer,
+    gejalaReducer,
     PReducer: provinsiReducer,
     KReducer: kotaReducer,
     KecReducer : kecamatanReducer,
     KelReducer : kelurahanReducer,
     KasusReducer : kasusReducer,
     ObatReducer : pengobatanReducer,
+})
 
-
-}))
-
-
-
-export default store;
+export default reducer;

@@ -33,29 +33,6 @@ const provinsiReducer = (state = defaultState, action) => {
                 provinsi: prov
             }
 
-        // case "SELECT_PROVINSI":
-        //     let dataselect= {
-        //         provinsi: action.payload.provinsi
-        //     }
-        //     let provselect={}
-        //     console.log("data select", state.provinsiSelect);
-        //     if(state.provinsiSelect.length === 0){
-        //         provselect = state.provinsi.concat(dataselect)
-        //         provselect = state.provinsi.concat(dataselect)
-        //     }
-        //     else{
-        //         let datafilter = state.provinsi.filter(el=> el.provinsi.toUpperCase === dataselect.provinsi.toUpperCase)
-        //         if (datafilter.length< 0) {
-        //             provselect = state.provinsi.concat(dataselect) 
-        //             provselect = state.provinsi.concat(dataselect)
-        //         }else{
-        //             provselect = state.provinsi.concat(dataselect)
-        //         }
-        //     }
-        //     return{
-        //         provinsiSelect: provselect
-        //     }
-
         case "CLEAR_PROVINSI":
             let idhapus= action.payload
             let datahapus = state.provinsi

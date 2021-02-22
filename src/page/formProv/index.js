@@ -54,6 +54,8 @@ class FormProv extends Component {
     //     })
     //   }
     render() { 
+        if (!this.props.login)
+            return this.props.history.push("/")
         const{provinsi} = this.state
         return ( 
             <div>
@@ -86,7 +88,8 @@ class FormProv extends Component {
 }
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
-    prov: state.PReducer.provinsi
+    prov: state.PReducer.provinsi,
+    login: state.AReducer.isLogin,
 
     
   })

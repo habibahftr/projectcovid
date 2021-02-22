@@ -35,6 +35,8 @@ class Kecamatan extends Component {
 
     }
     render() { 
+        if (!this.props.login)
+            return this.props.history.push("/")
         console.log("ini kec");
         return ( 
             <>
@@ -88,7 +90,8 @@ class Kecamatan extends Component {
 }
  
 const mapStateToProps = state => ({
-    kecList : state.KecReducer.kecamatan
+    kecList : state.KecReducer.kecamatan,
+    login: state.AReducer.isLogin,
 
     
   })

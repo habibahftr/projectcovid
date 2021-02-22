@@ -28,22 +28,24 @@ class Gejala extends Component {
         this.props.clearData(idx)
         this.setState({})
         this.props.history.push("/gejala")
-        // let dataBaru= this.props.indicat.splice(index, 1)
-        // dataBaru= dataBaru.splice(index, 1)
-        // console.log("data baru", dataBaru);
         alert(`Data berhasil terhapus`)
 
     }
     editClick=(index)=>{
-        this.props.cariGejala(index)
+        this.props.cariGejala({index})
         console.log("index edit", index);
-        this.props.history.push("/formgejala")
+        this.props.history.push("/editgejala")
 
     }
 
 
     render() {
+        if (!this.props.login)
+            return this.props.history.push("/")
+ 
         console.log("gejala", this.props.indicat);
+        console.log("provinsi", this.props.provinsi);
+        // console.log(this.props.hay);
         return (
             <>
             <Header></Header>
@@ -67,6 +69,7 @@ class Gejala extends Component {
                             </thead>
                             <tbody>
                                 {
+                                     this.props.indicat !== undefined &&
                                     this.props.indicat.map((el, index) => {
                                         return (
                                             <tr key={index}>
@@ -92,8 +95,10 @@ class Gejala extends Component {
 }
 
 const mapStateToProps = state => ({
-    // dataUser: state.UReducer.users,
-    indicat: state.InReducer.indications
+    indicat: state.gejalaReducer.indications,
+    hay : state.gejalaReducer.hallo,
+    provinsi : state.PReducer.provinsi,
+    login: state.AReducer.isLogin,
 
     
   })

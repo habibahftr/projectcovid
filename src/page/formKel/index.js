@@ -59,6 +59,8 @@ class FormKel extends Component {
     //     })
     //   }
     render() { 
+        if (!this.props.login)
+            return this.props.history.push("/")
         const{provinsi, kota, kecamatan, kelurahan} = this.state
         return ( 
             <>
@@ -131,7 +133,8 @@ const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
     city: state.KReducer.city,
     prov :state.PReducer.provinsi,
-    kecamatan: state.KecReducer.kecamatan
+    kecamatan: state.KecReducer.kecamatan,
+    login: state.AReducer.isLogin,
 
     
   })

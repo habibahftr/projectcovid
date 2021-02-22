@@ -19,7 +19,10 @@ import Kelurahan from '../../page/kelurahan';
 import FormKel from '../../page/formKel';
 import Kasus from '../../page/kasus';
 import FormKasus from "../../page/formKasus";
-
+import Pengobatan from '../../page/pengobatan';
+import FormObat from '../../page/formobat';
+import Logout from '../../page/logout';
+import DetailPage from "../../page/detailPage";
 
 class Body extends Component {
     constructor(props) {
@@ -124,6 +127,31 @@ class Body extends Component {
                     ()=>{
                         let history = useHistory()
                         return <FormKasus history={history} />
+                    }
+                }/>
+                <Route path="/pengobatan" component={
+                    ()=>{
+                        let history = useHistory()
+                        return <Pengobatan history={history}/>
+                    }
+                }/>
+                <Route path="/formobat" component={
+                    ()=>{
+                        let history = useHistory()
+                        return <FormObat history={history} />
+                    }
+                }/>
+                <Route path="/detail" component={
+                    ()=>{
+                        let history = useHistory()
+                        return <DetailPage history={history} />
+                    }
+                }/>
+
+                <Route path="/logout" component={
+                    ()=>{
+                        let history = useHistory()
+                        return <Logout history={history} />
                     }
                 }/>
                     

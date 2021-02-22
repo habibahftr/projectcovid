@@ -58,6 +58,8 @@ class FormKec extends Component {
     //     })
     //   }
     render() { 
+        if (!this.props.login)
+            return this.props.history.push("/")
         const{provinsi, kota, kecamatan} = this.state
         console.log("ini form kec");
         return (  
@@ -117,7 +119,8 @@ class FormKec extends Component {
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
     city: state.KReducer.city,
-    prov :state.PReducer.provinsi
+    prov :state.PReducer.provinsi,
+    login: state.AReducer.isLogin,
 
     
   })

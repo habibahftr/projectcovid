@@ -31,14 +31,18 @@ class FormKasus extends Component {
     }
 
     saveKasus=(data)=>{
-        this.setId()
-        let obj =this.state
-        // if(this.state.edit===false){
+        data.preventDefault()
+        this.setState({
+            id : this.setId()
+        }, () => {
+            let obj =this.state
             this.props.submitKasus(obj);
-            data.preventDefault()
-            this.clear()
-            alert(`Sumbit success`)
-            this.props.history.push("/kasus")
+            this.props.history.push("/kasus");
+            this.clear();
+            alert(`Sumbit success`);
+        })
+        // if(this.state.edit===false){
+            
         // }else{
             // this.props.editgejala(obj)
         //     this.setState({
@@ -54,6 +58,7 @@ class FormKasus extends Component {
     
     clear = () => {
         this.setState({ 
+            id:"",
             provinsi:"",
             kota:"",
             kecamatan:"",
@@ -92,17 +97,29 @@ class FormKasus extends Component {
         // console.log(this.state.hobby);
     }
 
-    setId=()=>{
-        let idawal= 0
-        let date = this.state.tglmasuk.toString
-        let idNow = "CVD-"+date+(idawal++).toString
+    datehandler = (event)=> {
         this.setState({
-            id : idNow
+            tglmasuk: event.target.value.toString()
         })
     }
 
+    setId=()=>{
+        let idawal= 0
+        let date = new Date(this.state.tglmasuk);
+        let year = date.getFullYear() + "";
+        let month = date.getMonth()+1+"";
+        let day = date.getDate()+"";
+        let kasus = (this.props.kasusList.length) + "";
+        let idNow = "CVD-"+ year.substring(2) + month+ day+kasus;
+
+        return idNow;
+    }
+
     render() { 
-        const{provinsi, kota, kecamatan, kelurahan, nik, nama, tglmasuk, gejala, status} = this.state
+        if (!this.props.login)
+            return this.props.history.push("/")
+        const{provinsi, kota, kecamatan, kelurahan, id, nik, nama, tglmasuk, gejala, status} = this.state
+
         return ( 
             <>
             <div>
@@ -164,7 +181,7 @@ class FormKasus extends Component {
 
                     <Label>NIK </Label> <Input type="text" name="nik" value={nik} onChange={this.setValue}  /><br/>  
                     <Label>Nama </Label> <Input type="text" name="nama" value={nama} onChange={this.setValue}  /><br/>  
-                    <Label>Tanggal Masuk </Label> <Input type="Date" name="tglmasuk" value={tglmasuk} onChange={this.setValue}  /><br/> 
+                    <Label>Tanggal Masuk </Label> <Input type="datetime-local" name="tglmasuk" value={tglmasuk} onChange={this.datehandler}  /><br/> 
                     <Label>Gejala </Label> <br/>
                     {
                         this.props.gejalaList.map((el, index)=>{
@@ -180,11 +197,10 @@ class FormKasus extends Component {
                         <option value="sembuh">Sembuh</option>
                         <option value="prosesPengobatan">Proses Pengobatan</option>
                     </select><br/>   
-                    <Link to="/">
                         <div>
                         <button type="submit" value="submit" onClick={this.saveKasus} >Submit</button>
                         </div>
-                    </Link>
+
                 </div>
                 </div>
 
@@ -200,12 +216,13 @@ class FormKasus extends Component {
 
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
-    gejalaList: state.InReducer.indications,
+    gejalaList: state.gejalaReducer.indications,
     cityList: state.KReducer.city,
     provList :state.PReducer.provinsi,
     kecamatanList: state.KecReducer.kecamatan,
     kelurahanList: state.KelReducer.kelurahan,
-    kasusList:state.KasusReducer.kasus
+    kasusList:state.KasusReducer.kasus,
+    login: state.AReducer.isLogin,
 
     
   })

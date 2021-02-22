@@ -40,6 +40,8 @@ class Regis extends Component {
     }
 
     render() {
+        if (!this.props.login)
+            return this.props.history.push("/")
         console.log("REGIS", this.props.dataUser); 
         return ( 
             <div className="container">
@@ -66,7 +68,8 @@ class Regis extends Component {
 
 
 const mapStateToProps = state => ({
-    dataUser: state.UReducer.users
+    dataUser: state.UReducer.users,
+    login: state.AReducer.isLogin,
     
   })
   

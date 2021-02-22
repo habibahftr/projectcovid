@@ -34,13 +34,17 @@ class Kasus extends Component {
         this.props.history.push("/formkasus")
     }
     render() {
+        if (!this.props.login)
+            return this.props.history.push("/")
+            
         console.log("kasus",this.props.kasusList); 
+        console.log("id", this.props.kasusList.id);
         // console.log("kel", this.props.kasusList);
         return ( 
             <>
             <Header></Header>
             <Nav></Nav>
-                <div className="container4" style={{marginLeft:"25%", width:"60%", marginTop:"8%", marginBottom:"8%"}}>
+                <div className="container4" style={{marginLeft:"25%", width:"60%", marginTop:"8%", marginBottom:"10%"}}>
                     <h2 style={{textAlign:"center"}}>DAFTAR KASUS</h2>
                     <div>
                         <Link to="/formkasus">
@@ -93,9 +97,8 @@ class Kasus extends Component {
  
 const mapStateToProps = state => ({
     kasusList : state.KasusReducer.kasus,
-
-
-    
+    login: state.AReducer.isLogin,
+      
   })
   
 const mapDispatchToProps = dispatch => {

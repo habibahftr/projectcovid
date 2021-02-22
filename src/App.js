@@ -9,6 +9,7 @@ import Gejala from "./page/gejala";
 import FormGejala from "./page/formg";
 import Home from './page/home';
 import Login from './page/login';
+import Logout from './page/logout';
 
 
 class App extends Component {
@@ -23,7 +24,9 @@ class App extends Component {
       <>
       <Router>
         <Body></Body>
+        {/* <Logout></Logout> */}
       </Router>
+      
       </>
      );
   }

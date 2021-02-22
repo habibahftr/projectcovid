@@ -35,6 +35,8 @@ class Kelurahan extends Component {
         this.props.history.push("/formkel")
     }
     render() { 
+        if (!this.props.login)
+            return this.props.history.push("/")
         console.log("kel", this.props.kelList);
         return ( 
             <>
@@ -92,6 +94,7 @@ class Kelurahan extends Component {
 const mapStateToProps = state => ({
     kecList : state.KecReducer.kecamatan,
     kelList : state.KelReducer.kelurahan,
+    login: state.AReducer.isLogin,
 
 
     
