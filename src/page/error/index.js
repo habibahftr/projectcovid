@@ -14,8 +14,8 @@ class Error extends Component {
         return <Link to="/" />
     }
     render() { 
-        if (!this.props.login)
-            return this.props.history.push("/")
+        // if (!this.props.login)
+        //     this.props.history.push("/")
  
         console.log("error");
         return ( 

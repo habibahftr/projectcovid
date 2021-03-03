@@ -32,7 +32,7 @@ class Kota extends Component {
     }
     render() { 
         if (!this.props.login)
-            return this.props.history.push("/")
+            this.props.history.push("/")
         console.log("kota", this.props.indicat);
         return ( 
             <>

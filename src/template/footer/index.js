@@ -9,7 +9,7 @@ class Footer extends Component {
     render() { 
         return ( 
             <div className="fixed-footer">
-            <h3>ini footer</h3>
+            <h3>KUNJUNGI https://www.covid19.go.id/ UNTUK PENDAFATARAN VAKSINASI </h3>
             </div>
          );
     }

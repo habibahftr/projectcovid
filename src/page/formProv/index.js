@@ -13,7 +13,7 @@ class FormProv extends Component {
         super(props);
         this.state = { 
             provinsi:"",
-            edit: false,
+            provEdit:{},
          }
     }
     setValue= el=>{
@@ -23,22 +23,28 @@ class FormProv extends Component {
     }
 
     saveprov=(data)=>{
-        if (this.props.indx) {
-            let objedit = {
-                index:this.props.indx,
-                provinsi:this.state.provinsi,
+        if(this.state.provinsi !== ""){
+            if (this.props.indx) {
+                let objedit = {
+                    index:this.props.indx,
+                    provinsi:this.state.provinsi,
+                }
+                this.props.editProv(objedit)
+                data.preventDefault()
+                this.clear()
+                alert(`Update success`)
+                this.props.history.push("/provinsi")    
+            }else{
+                let obj = this.state
+                this.props.submitProv(obj);
+                data.preventDefault()
+                this.clear()
+                alert(`Sumbit success`)
+                this.props.history.push("/provinsi")
             }
-            this.props.editProv(objedit)
-            data.preventDefault()
-            this.clear()
-            alert(`Update success`)
-            this.props.history.push("/provinsi")    
         }else{
-            let obj = this.state
-            this.props.submitProv(obj);
             data.preventDefault()
-            this.clear()
-            alert(`Sumbit success`)
+            alert (`data yang diisi harus lengkap!`)
             this.props.history.push("/provinsi")
         }
     }
@@ -56,6 +62,11 @@ class FormProv extends Component {
     clear = () => {
         this.setState({ 
             provinsi:"",
+        })
+    }
+    reset = () => {
+        this.setState({
+            provEdit: {}
         })
     }
     
@@ -96,7 +107,7 @@ class FormProv extends Component {
 const mapStateToProps = state => ({
     // dataUser: state.UReducer.users,
     prov: state.PReducer.provinsi,
-    provEdit: state.PReducer.provedit,
+    provEdit: state.PReducer.provEdit,
     login: state.AReducer.isLogin, 
   })
   

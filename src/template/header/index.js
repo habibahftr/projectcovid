@@ -9,7 +9,7 @@ class Header extends Component {
     render() { 
         return ( 
             <div className="fixed-header">
-            <h1>ini header</h1>
+            <h1>WEB PANDATAAN PASIEN COVID-19 DI INDONESIA</h1>
             </div>
          );
     }

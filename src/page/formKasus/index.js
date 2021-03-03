@@ -41,18 +41,6 @@ class FormKasus extends Component {
             this.clear();
             alert(`Sumbit success`);
         })
-        // if(this.state.edit===false){
-            
-        // }else{
-            // this.props.editgejala(obj)
-        //     this.setState({
-        //        edit: false 
-        //     })
-        //     data.preventDefault()
-        //     this.clear()
-        //     alert("Update Success!")
-        //     this.props.history.push("/kota")
-        // }
     }
 
     
@@ -104,7 +92,6 @@ class FormKasus extends Component {
     }
 
     setId=()=>{
-        let idawal= 0
         let date = new Date(this.state.tglmasuk);
         let year = date.getFullYear() + "";
         let month = date.getMonth()+1+"";
@@ -219,8 +206,8 @@ const mapStateToProps = state => ({
     gejalaList: state.gejalaReducer.indications,
     cityList: state.KReducer.city,
     provList :state.PReducer.provinsi,
-    kecamatanList: state.KecReducer.kecamatan,
-    kelurahanList: state.KelReducer.kelurahan,
+    kecamatanList: state.KecamatanReducer.kecamatan,
+    kelurahanList: state.KelurahanReducer.kelurahan,
     kasusList:state.KasusReducer.kasus,
     login: state.AReducer.isLogin,
 

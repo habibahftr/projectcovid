@@ -23,20 +23,17 @@ class Kelurahan extends Component {
         this.props.clearKel(idx)
         this.props.history.push("/kelurahan")
         this.setState({})
-        // let dataBaru= this.props.indicat.splice(index, 1)
-        // dataBaru= dataBaru.splice(index, 1)
-        // console.log("data baru", dataBaru);
         alert(`Data berhasil terhapus`)
 
     }
     editClick=(index)=>{
-        this.props.cariKec(index)
+        this.props.cariKel(index)
         console.log("index edit", index);
-        this.props.history.push("/formkel")
+        this.props.history.push("/editkelurahan/"+index)
     }
     render() { 
         if (!this.props.login)
-            return this.props.history.push("/")
+            this.props.history.push("/")
         console.log("kel", this.props.kelList);
         return ( 
             <>
@@ -92,8 +89,8 @@ class Kelurahan extends Component {
 }
  
 const mapStateToProps = state => ({
-    kecList : state.KecReducer.kecamatan,
-    kelList : state.KelReducer.kelurahan,
+    kecList : state.KecamatanReducer.kecamatan,
+    kelList : state.KelurahanReducer.kelurahan,
     login: state.AReducer.isLogin,
 
 

@@ -19,10 +19,7 @@ class Pengobatan extends Component {
         console.log("index", idx);
         this.props.clearPengobatan(idx)
         this.props.history.push("/pengobatan")
-        this.setState({})
-        // let dataBaru= this.props.indicat.splice(index, 1)
-        // dataBaru= dataBaru.splice(index, 1)
-        // console.log("data baru", dataBaru);
+        this.setState({});
         alert(`Data berhasil terhapus`)
 
     }

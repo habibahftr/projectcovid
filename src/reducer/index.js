@@ -14,8 +14,8 @@ let reducer = combineReducers({
     gejalaReducer,
     PReducer: provinsiReducer,
     KReducer: kotaReducer,
-    KecReducer : kecamatanReducer,
-    KelReducer : kelurahanReducer,
+    KecamatanReducer : kecamatanReducer,
+    KelurahanReducer : kelurahanReducer,
     KasusReducer : kasusReducer,
     ObatReducer : pengobatanReducer,
 })

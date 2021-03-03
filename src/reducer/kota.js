@@ -11,7 +11,7 @@ let defaultState = {
     },
         
     ],
-    kotaedit: {}
+    kotaEdit: {}
 }
 
 const kotaReducer = (state = defaultState, action) => {
@@ -66,7 +66,7 @@ const kotaReducer = (state = defaultState, action) => {
                 console.log(data);
                 return{
                     ...state,
-                    kotaedit: data
+                    kotaEdit: data
                 }
                 console.log("data", state.city);
                 

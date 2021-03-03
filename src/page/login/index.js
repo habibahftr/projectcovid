@@ -20,22 +20,8 @@ class Login extends Component {
     }
 
     doLogin=(dataLogin)=>{
-        
         const {username, password}= dataLogin
         console.log("user", dataLogin);
-        // console.log("datauser", this.props.dataUser)
-        // const {dataUser}= this.props 
-        // let find = dataUser.filter(user => {
-        //     return user.username === username && user.password === password 
-        // })
-        // if(find.length>0){
-        //     this.props.submitLogin(find[0])
-        //     alert(`login succesfully`);
-        //     this.props.history.push("/home")
-        // }else{
-        //     // alert(`username & password is undifined`)
-        //     this.props.history.push("/error")
-        // }
         if (username==="nana" && password==="123") {
                 this.props.submitLogin(dataLogin)
                 alert(`login succesfully`); 

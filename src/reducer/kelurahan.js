@@ -17,7 +17,7 @@ let defaultState = {
     },
         
     ],
-    gejala: {}
+    kelEdit: {}
 }
 
 const kelurahanReducer = (state = defaultState, action) => {
@@ -38,6 +38,7 @@ const kelurahanReducer = (state = defaultState, action) => {
             }
             console.log(kel)
             return {
+                ...state,
                 kelurahan: kel
             }
             
@@ -52,16 +53,18 @@ const kelurahanReducer = (state = defaultState, action) => {
                 console.log("data hapus2:", datahapus);
 
                 return{
+                    ...state,
                     kelurahan:datahapus
                 }
 
             case "UPDATE_KELURAHAN":
                 let newkel = state.kelurahan
-                    newkel[action.payload.id].provinsi = action.payload.provinsi;
-                    newkel[action.payload.id].kota = action.payload.kota;
-                    newkel[action.payload.id].kecamatan = action.payload.kecamatan
-                    newkel[action.payload.id].kelurahan=action.payload.kelurahan
+                    newkel[action.payload.index].provinsi = action.payload.provinsi;
+                    newkel[action.payload.index].kota = action.payload.kota;
+                    newkel[action.payload.index].kecamatan = action.payload.kecamatan
+                    newkel[action.payload.index].kelurahan=action.payload.kelurahan
                 return{
+                    ...state,
                     kelurahan:newkel
                     
                 }
@@ -71,7 +74,8 @@ const kelurahanReducer = (state = defaultState, action) => {
                 let data = state.kelurahan[index]
                 console.log(data);
                 return{
-                    kelurahan: data
+                    ...state,
+                    kelEdit: data
                 }
                 console.log("data", state.city);
                 

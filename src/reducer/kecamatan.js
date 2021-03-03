@@ -13,7 +13,7 @@ let defaultState = {
     },
         
     ],
-    kecedit: {}
+    kecEdit: {}
 }
 
 const kecamatanReducer = (state = defaultState, action) => {
@@ -33,6 +33,7 @@ const kecamatanReducer = (state = defaultState, action) => {
             }
             console.log(kec)
             return {
+                ...state,
                 kecamatan: kec
             }
             
@@ -47,6 +48,7 @@ const kecamatanReducer = (state = defaultState, action) => {
                 console.log("data hapus2:", datahapus);
 
                 return{
+                    ...state,
                     kecamatan:datahapus
                 }
 
@@ -57,18 +59,20 @@ const kecamatanReducer = (state = defaultState, action) => {
                     newkec[action.payload.index].kecamatan = action.payload.kecamatan
                     console.log("newkec", newkec);
                 return{
+                    ...state,
                     kecamatan:newkec
                     
                 }
             
             case "CARI_KECAMATAN":
-                let index = action.payload
+                let index = action.payload.index
                 let data = state.kecamatan[index]
-                console.log(data);
+                // console.log(data);
                 return{
-                    kecamatan: data
+                    ...state,
+                    kecEdit: data
                 }
-                console.log("data", state.city);
+                console.log("data", state.kecamatan);
                 
             default:
                 return state

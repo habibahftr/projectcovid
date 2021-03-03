@@ -31,7 +31,7 @@ class Kecamatan extends Component {
     editClick=(index)=>{
         this.props.cariKec(index)
         console.log("index edit", index);
-        this.props.history.push("/formkec")
+        this.props.history.push("/editkecamatan/"+index)
 
     }
     render() { 
@@ -90,7 +90,7 @@ class Kecamatan extends Component {
 }
  
 const mapStateToProps = state => ({
-    kecList : state.KecReducer.kecamatan,
+    kecList : state.KecamatanReducer.kecamatan,
     login: state.AReducer.isLogin,
 
     

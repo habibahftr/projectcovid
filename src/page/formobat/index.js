@@ -27,29 +27,18 @@ class FormObat extends Component {
 
     datehandler = (event)=> {
         this.setState({
-            tglmasuk: event.target.value.toString()
+            tglterapi: event.target.value.toString()
         })
     }
 
     saveObat=(data)=>{
-        let obj =this.state
-        // if(this.state.edit===false){
+            let obj =this.state
             this.props.submitPengobatan(obj);
             data.preventDefault()
             this.clear()
             alert(`Sumbit success`)
             this.setState({})
             this.props.history.push("/pengobatan")
-        // }else{
-            // this.props.editgejala(obj)
-        //     this.setState({
-        //        edit: false 
-        //     })
-        //     data.preventDefault()
-        //     this.clear()
-        //     alert("Update Success!")
-        //     this.props.history.push("/kota")
-        // }
     }
 
     
@@ -62,13 +51,7 @@ class FormObat extends Component {
             tglterapi:"",
         })
     }
-    // reset = ()=> {
-    //     this.setState({
-    //         gejalaedit :{}
-    //     })
-    //   }
-
-
+ 
     render() {
         if (!this.props.login)
             return this.props.history.push("/")

@@ -16,7 +16,6 @@ class FormKec extends Component {
             kota:"",
             kecamatan:"",
             kecedit:{},
-            edit: false
          }
     }
     setValue= el=>{
@@ -26,6 +25,7 @@ class FormKec extends Component {
     }
 
     saveKec=(data)=>{
+        if(this.state.provinsi !== "" && this.state.kota !== "" && this.state.kecamatan !==""){
             if (this.props.indx) {
                 let objedit = {
                     index:this.props.indx,
@@ -47,6 +47,11 @@ class FormKec extends Component {
                     alert(`Sumbit success`)
                     this.props.history.push("/kecamatan")
             }
+        }else{
+            data.preventDefault()
+            alert (`data yang diisi harus lengkap!`)
+            this.props.history.push("/kecamatan")
+        }
     }
 
     componentDidMount(){ //akan dijalankan ketika pindah komponen,dan hanya dijalankan sekali
@@ -54,8 +59,9 @@ class FormKec extends Component {
             let dataEdit = this.props.cariKec({index : this.props.indx})
             console.log(this.props.dataEdit);
             this.setState({
-                indication : this.props.dataEdit.indication,
-                description : this.props.dataEdit.description
+                provinsi : this.props.kecamatanEdit.provinsi,
+                kota : this.props.kecamatanEdit.kota,
+                kecamatan : this.props.kecamatanEdit.kecamatan,
             })
         }
     }
@@ -137,7 +143,7 @@ const mapStateToProps = state => ({
     city: state.KReducer.city,
     prov :state.PReducer.provinsi,
     login: state.AReducer.isLogin,
-    dataedit : state.KecReducer.kecedit
+    kecamatanEdit : state.KecamatanReducer.kecEdit
 
     
   })

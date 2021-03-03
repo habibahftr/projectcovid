@@ -12,7 +12,7 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist:['InReducer', 'AReducer'],
+  whitelist:['gejalaReducer', 'AReducer', 'KReducer', 'PReducer', 'KecReducer', 'KelReducer', 'KasusReducer', 'ObatReducer' ], //yang ingin dimasukan ke loacal storage
   blacklist:[]
 }
 

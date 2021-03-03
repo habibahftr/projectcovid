@@ -15,39 +15,41 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
         }
     }
 
     render() {
         if (!this.props.login)
             return this.props.history.push("/")
- 
+
         return (
             <>
+                <div >
                     <div >
-                        <div >
-                            <Header></Header>
-                        </div>
-                        <div className="row">
-                            <div className="col-3 col-m-5">
-                                <div >
-                                    <Nav ></Nav>
-                                </div>
-                            </div>
-                            <div className="content">
-                                <div className="col-12 col-m-12">
-                                        {/* {this.isPage()} */}
-                                </div>
+                        <Header></Header>
+                    </div>
+                    <div className="row">
+                        <div className="col-3 col-m-5">
+                            <div >
+                                <Nav ></Nav>
                             </div>
                         </div>
-                        <div style={{ clear: "both" }}></div>
-                            <div className="row">
-                                <div className="footer">
-                                    <Footer></Footer>
-                                </div>
-                            </div>
+                        <div className="content">
+                            <h2 style={{marginLeft: "45vh", marginTop:"30vh"}}>
+                                Selamat datang di web pendataan kasus pasien covid di Indonesia.
+                                silahkan isi data diri Anda dimulai dari bagian Master, lalu dilanjutkan ke
+                                bagian kasus dan terakhir ke pengobatan.
+                            </h2>
                         </div>
+                    </div>
+                    <div style={{ clear: "both" }}></div>
+                    <div className="row">
+                        <div className="footer">
+                            <Footer></Footer>
+                        </div>
+                    </div>
+                </div>
             </>
         );
     }

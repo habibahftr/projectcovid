@@ -6,7 +6,7 @@ let defaultState = {
         provinsi: "JawaTengah"
     },
     ],
-    provedit:{}
+    provEdit:{}
 }
 
 const provinsiReducer = (state = defaultState, action) => {
@@ -58,7 +58,7 @@ const provinsiReducer = (state = defaultState, action) => {
             console.log("data", action.payload);
             return {
                 ...state,
-                provedit: data
+                provEdit: data
             }
 
         default:

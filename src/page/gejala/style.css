@@ -25,7 +25,7 @@ table{
     margin-left: 80%;
 }
   .table th{
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     color: white;
     background:#006f6b;

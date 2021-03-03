@@ -26,23 +26,29 @@ class FormGejala extends Component {
     }
 
     save = (data) => {
-        if (this.props.indx) {
-            let objedit = {
-                index:this.props.indx,
-                indication:this.state.indication,
-                description:this.state.description,
+        if (this.state.indication !== "" && this.state.description !== ""){
+            if (this.props.indx) {
+                let objedit = {
+                    index:this.props.indx,
+                    indication:this.state.indication,
+                    description:this.state.description,
+                }
+                this.props.editgejala(objedit)
+                data.preventDefault()
+                this.clear()
+                alert(`Update success`)
+                this.props.history.push("/gejala")    
+            }else{
+                let obj = this.state
+                this.props.gejala(obj);
+                data.preventDefault()
+                this.clear()
+                alert(`Sumbit success`)
+                this.props.history.push("/gejala")
             }
-            this.props.editgejala(objedit)
-            data.preventDefault()
-            this.clear()
-            alert(`Update success`)
-            this.props.history.push("/gejala")    
         }else{
-            let obj = this.state
-            this.props.gejala(obj);
             data.preventDefault()
-            this.clear()
-            alert(`Sumbit success`)
+            alert (`data yang diisi harus lengkap!`)
             this.props.history.push("/gejala")
         }
 
